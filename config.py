@@ -4,7 +4,7 @@ from sqlmesh.core.config import (
     Config,
     ModelDefaultsConfig,
     GatewayConfig,
-    MSSQLConnectionConfig
+    FabricSQLConnectionConfig
 )
 
 load_dotenv()
@@ -14,18 +14,17 @@ USER=f"{os.getenv('FABRIC__CLIENT_ID')}@{os.getenv('FABRIC__TENANT_ID')}"
 PASSWORD=os.getenv('FABRIC__CLIENT_SECRET')
 DATABASE=os.getenv('FABRIC__DATABASE')
 
-print([HOST, USER, PASSWORD, DATABASE])
-
 config = Config(
     project="sqlmesh-fabric",
     gateways={
             "fabric": GatewayConfig(
-                connection=MSSQLConnectionConfig(
+                connection=FabricSQLConnectionConfig(
                     host=HOST,
                     authentication="ActiveDirectoryServicePrincipal",
                     user=USER,
                     password=PASSWORD,
-                    database=DATABASE
+                    database=DATABASE,
+                    driver="pyodbc"
                 )
             ),
         },

@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "azure-cli>=2.0.67",
     "pyodbc>=5.2.0",
     "python-dotenv>=1.0.1",
     "sqlmesh",
